@@ -38,6 +38,9 @@ export async function POST(request) {
     return response
   } catch (error) {
     console.error("Register error:", error)
-    return NextResponse.json({ message: "Unable to create your account right now." }, { status: 500 })
+    return NextResponse.json(
+      { message: "Unable to create your account right now.", debug: String(error?.message || error).slice(0, 400) },
+      { status: 500 }
+    )
   }
 }
